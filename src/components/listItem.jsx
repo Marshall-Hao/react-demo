@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
-
-const product = {
-    id: 1,
-    name: "fuck machine",
-    price: 3000,
-    stock: 20,
-  };
   
-  let count = 0;
-
+let count = 0;
 class ListItem extends Component {
+    constructor( props) {
+        super(props)
+    }
 
     manageCount() {
         return count + '个'
@@ -18,9 +13,9 @@ class ListItem extends Component {
     render() { 
         return (
             <div className='row mb-3'>
-                <div className='col-6 grid-col border'>{product.name}</div>
-                <div className='col-1 grid-col border'>¥{product.price}</div>
-                <div className='col-2 grid-col border'>{this.manageCount()}</div>
+                <div className='col-6 grid-col border'>{this.props.data.name}</div>
+                <div className='col-1 grid-col border'>¥{this.props.data.price}</div>
+                <div className={`col-2 grid-col border' ${count ? '':' bg-black'}`}>{this.manageCount()}</div>
             </div>
         );
     }
