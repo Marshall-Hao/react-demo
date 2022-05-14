@@ -30,9 +30,19 @@ class App extends Component {
       return <div className="text-center">Empty</div>;
     }
     return listData.map((item, index) => {
-      return <ListItem key={item.id} data={item} />;
+      return (
+        <ListItem
+          key={item.id}
+          data={item}
+          onDelete={this.handleDelete}
+        />
+      );
     });
   }
+
+  handleDelete = (id) => {
+    console.log("id", id);
+  };
 
   render() {
     return (
