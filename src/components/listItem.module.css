@@ -1,0 +1,9 @@
+.title {
+    composes: common from 'common.module.css';
+    font-size: 20px;
+    color: red;
+}
+
+.list-title {
+    font-weight: 700;
+}
