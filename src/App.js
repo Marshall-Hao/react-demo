@@ -1,59 +1,125 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./App.css";
-import ListItem from "./components/listItem";
+import NavBar from "./components/navbar";
+import ListPage from "./components/listpage";
 // import ListItem from "./components/listItemFunc";
 
-const listData = [
-  {
-    id: 1,
-    name: "fuck machine 1",
-    price: 3000,
-    stock: 20,
-  },
-  {
-    id: 2,
-    name: "fuck machine 2",
-    price: 2000,
-    stock: 10,
-  },
-  {
-    id: 3,
-    name: "fuck machine 3",
-    price: 1000,
-    stock: 30,
-  },
-];
+class App extends PureComponent {
+  constructor(props) {
+    super(props);
 
-class App extends Component {
-  renderList() {
-    if (listData.length === 0) {
-      return <div className="text-center">Empty</div>;
-    }
-    return listData.map((item, index) => {
-      return (
-        <ListItem
-          key={item.id}
-          data={item}
-          onDelete={this.handleDelete}
-        />
-      );
-    });
+    this.state = {
+      listData: [
+        {
+          id: 1,
+          name: "fuck machine 1",
+          price: 3000,
+          value: 4,
+        },
+        {
+          id: 2,
+          name: "fuck machine 2",
+          price: 2000,
+          value: 2,
+        },
+        {
+          id: 3,
+          name: "fuck machine 3",
+          price: 1000,
+          value: 1,
+        },
+      ],
+    };
   }
 
+  // * 单一数据源
+  handleDecrease = (id) => {
+    console.log(id);
+    const _data = this.state.listData.map((item) => {
+      if (item.id === id) {
+        const _item = { ...item };
+        _item.value--;
+        if (_item.value < 0) _item.value = 0;
+        return _item;
+      } else {
+        return item;
+      }
+    });
+
+    this.setState({
+      listData: _data,
+    });
+  };
+
+  handleIncrease = (id) => {
+    const _data = this.state.listData.map((item) => {
+      if (item.id === id) {
+        const _item = { ...item };
+        _item.value++;
+        return _item;
+      } else {
+        return item;
+      }
+    });
+
+    this.setState({
+      listData: _data,
+    });
+  };
+
+  // renderList() {
+  //   if (this.state.listData.length === 0) {
+  //     return <div className="text-center">Empty</div>;
+  //   }
+  //   return this.state.listData.map((item, index) => {
+  //     return (
+  //       <ListItem
+  //         key={item.id}
+  //         data={item}
+  //         onDelete={this.handleDelete}
+  //         onIncrease={this.handleIncrease}
+  //         onDecrease={this.handleDecrease}
+  //       />
+  //     );
+  //   });
+  // }
+
   handleDelete = (id) => {
-    console.log("id", id);
+    const listData = this.state.listData.filter(
+      (item) => item.id !== id
+    );
+
+    this.setState({
+      listData,
+    });
+  };
+
+  handleReset = () => {
+    const _list = this.state.listData.map((item) => {
+      const _item = { ...item };
+      _item.value = 0;
+      return _item;
+    });
+
+    this.setState({
+      listData: _list,
+    });
   };
 
   render() {
     return (
-      <div className="container">
-        <span className="title">Title</span>
-        {/* 简洁  与运算符*/}
-        {listData.length === 0 && (
-          <div className="text-center">Empty</div>
-        )}
-        {this.renderList()}
-      </div>
+      <>
+        <NavBar
+          onReset={this.handleReset}
+          total={this.state.listData.length}
+        />
+        <ListPage
+          data={this.state.listData}
+          handleDecrease={this.handleDecrease}
+          handleIncrease={this.handleIncrease}
+          handleDelete={this.handleDelete}
+        />
+      </>
     );
   }
 }
