@@ -15,6 +15,17 @@ class ListItem extends PureComponent {
         // this.handleDecrease = this.handleDecrease.bind(this)
     }
 
+    componentDidUpdate(nextProps) {
+        // * 可以跟服务端交换数据
+        if(nextProps.data.value !== this.props.data.value) {
+            console.log('Item - Updated')
+        }
+    }
+
+    componentWillUnmount() {
+        // * 去除一些eventlister 和 timer
+        console.log('Item - delete')
+    }
     // doSthWithCount = () => {
     //     if (this.props.data.value <= 0) {
     //         // * setState 是异步的，为了优化，可能多个setState同步执行
@@ -56,7 +67,7 @@ class ListItem extends PureComponent {
     // }
 
     render() { 
-        console.log('item is renderer')
+        console.log('item - rendering')
         // * 方便条件渲染了
         const _cn = cn({
             'bg-black': !this.state.count

@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 
 
 const NavBar = ({total, onReset}) => {
+    console.log('Nav - rendering')
     return ( 
         <nav>
         <span>NAVBAR</span>

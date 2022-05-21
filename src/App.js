@@ -30,8 +30,13 @@ class App extends PureComponent {
         },
       ],
     };
+
+    console.log("App - constructor");
   }
 
+  componentDidMount() {
+    console.log("App - Mount");
+  }
   // * 单一数据源
   handleDecrease = (id) => {
     console.log(id);
@@ -107,6 +112,7 @@ class App extends PureComponent {
   };
 
   render() {
+    console.log("app - render");
     return (
       <>
         <NavBar

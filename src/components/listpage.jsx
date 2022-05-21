@@ -22,6 +22,7 @@ class ListPage extends PureComponent {
     }
 
     render() { 
+        console.log('ListPage - rendering')
         return (
             <div className="container">
                 {this.props.data.length === 0 && (
