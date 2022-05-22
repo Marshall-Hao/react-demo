@@ -3,7 +3,8 @@ import "./App.css";
 import NavBar from "./components/navbar";
 import ListPage from "./components/listpage";
 // import ListItem from "./components/listItemFunc";
-
+import ItemA from "./components/hoc/itemA";
+import ItemC from "./components/rp/itemC";
 class App extends PureComponent {
   constructor(props) {
     super(props);
@@ -125,6 +126,8 @@ class App extends PureComponent {
           handleIncrease={this.handleIncrease}
           handleDelete={this.handleDelete}
         />
+        <ItemA example={"example"} />
+        <ItemC />
       </>
     );
   }
