@@ -5,6 +5,9 @@ import ListPage from "./components/listpage";
 // import ListItem from "./components/listItemFunc";
 import ItemA from "./components/hoc/itemA";
 import ItemC from "./components/rp/itemC";
+import Fragments from "./components/fragments";
+import Portal from "./components/portal";
+
 class App extends PureComponent {
   constructor(props) {
     super(props);
@@ -116,6 +119,10 @@ class App extends PureComponent {
     console.log("app - render");
     return (
       <>
+        <div className="mount"></div>
+        <div className="portal">
+          <Portal name="aaa" />
+        </div>
         <NavBar
           onReset={this.handleReset}
           total={this.state.listData.length}
@@ -128,6 +135,7 @@ class App extends PureComponent {
         />
         <ItemA example={"example"} />
         <ItemC />
+        <Fragments />
       </>
     );
   }
