@@ -63,7 +63,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "build:plugin": "tsc ./config/custom-plugin/plugin.ts"
   },
   "eslintConfig": {
     "extends": [
@@ -138,5 +139,9 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "@babel/preset-react": "^7.17.12",
+    "webpack-obfuscator": "3.0.0"
   }
 }
